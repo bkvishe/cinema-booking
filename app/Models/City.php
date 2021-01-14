@@ -16,8 +16,15 @@ class City extends Model
         return $this->hasMany(Theater::class, 'city_id', 'id');
     }
 
-    public function films()
+    public static function films(int $locationId)
     {
-        return $this->hasMany(Theater::class, 'city_id', 'id');
+        return Film::select('film.*')
+        ->with('shows')
+        ->join('show', 'show.film_id', '=', 'film.id')
+        ->join('theater_screen', 'theater_screen.id', '=', 'show.theater_screen_id')
+        ->join('theater', 'theater.id', '=', 'theater_screen.theater_id')
+        ->where('theater.city_id', $locationId)
+        ->get()
+        ->toArray();
     }
 }

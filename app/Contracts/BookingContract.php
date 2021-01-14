@@ -4,9 +4,13 @@ namespace App\Contracts;
 
 interface BookingContract
 {
-    public function getLocations() :array;
+    public function getCities() :array;
 
-    public function getTheaters(int $locationId) :array;
+    public function getTheatersByCity(int $cityId) :array;
 
-    public function getScreens(int $theaterId) :array;
+    public function getScreensByTheater(int $theaterId) :array;
+
+    public function getFilmsByCity(int $cityId) :array;
+
+    public function getTheatersByFilm(int $filmId) :array;
 }

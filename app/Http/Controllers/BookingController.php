@@ -23,6 +23,12 @@ class BookingController extends Controller
     {
         //dd($this->booking->getTheaters(1));
 
-        dd($this->booking->getScreens(1));
+        //dd($this->booking->getScreens(1));
+
+        //dd($this->booking->getFilmsByCity(1));
+
+        dd($this->booking->getTheatersByFilm(1));
+
+        
     }
 }
