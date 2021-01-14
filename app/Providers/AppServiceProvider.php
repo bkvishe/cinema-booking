@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Contracts\BookingContract;
+use App\Services\NativeBookingService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +16,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->bind(BookingContract::class, function($app) {
+
+            return new NativeBookingService();
+        });
     }
 
     /**
