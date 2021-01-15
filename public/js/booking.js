@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function(){
 
     $("#city").on('change', function(){
 
@@ -26,11 +26,29 @@ $(document).ready(function(){
             url: "http://localhost/getTheatersByFilm/" + filmId,
             type: "GET",
             success: function(response){
-                console.log(response);
-
+                
                 $("#theater-grid").html(response);
 
                 $("#theater-grid").show();
+            }
+        });
+    });    
+
+    $(document).on('click', '.show-selection', function(e){
+
+        let showId = $("input:radio.show-selection:checked").val();
+    
+        $.ajax({
+            url: "http://localhost/getAvailableSeats/" + showId,
+            type: "GET",
+            success: function(response){
+                                
+                $("#seat-selection").html(response);
+
+                $("#seat-selection").show();
+
+                $("#book-button").show();
+                
             }
         });
     });

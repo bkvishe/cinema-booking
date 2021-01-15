@@ -6,18 +6,26 @@
     <th scope="row">{{ $theater['name'] }}</th>
     <td>
         <table class="table">
+            <thead>
+                <th>Select the show</th>
+                <th>Date</th>
+                <th>Show Time</th>
+                <th>Price Tag</th>
+            </thead>
             <tbody>
                 @foreach ($theater['shows'] as $show)
                     <tr>
                         <td>
-                            <input type="radio" name="show" value="{{ $show['id'] }}" class="form-control" />
+                            <input type="radio" name="show" value="{{ $show['id'] }}" class="form-control show-selection" />
                         </td>
-                        <th>Date</th>
-                        <td scope="row">{{ $show['date'] }}</td>
+                        <td scope="row">{{ date('d-m-Y', strtotime($show['date'])) }}</td>
                         
-                        <th>Show Time</th>
-                        <td scope="row">{{ $show['start_time'] }} to {{ $show['end_time'] }}</td>                    
-                    </tr>                    
+                        
+                        <td scope="row">{{ date('h:i A', strtotime($show['start_time'])) }} to {{ date('h:i A', strtotime($show['end_time'])) }}</td>
+
+                        
+                        <td scope="row">{{ $show['price_tag'] }}</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

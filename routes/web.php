@@ -26,3 +26,11 @@ Route::get('/', [App\Http\Controllers\BookingController::class, 'index']);
 Route::get('/getFilmsByCity/{id}', [App\Http\Controllers\BookingController::class, 'getFilmsByCity']);
 
 Route::get('/getTheatersByFilm/{id}', [App\Http\Controllers\BookingController::class, 'getTheatersByFilm']);
+
+Route::get('/getAvailableSeats/{id}', [App\Http\Controllers\BookingController::class, 'getAvailableSeats']);
+
+Route::middleware(['auth'])->post('/storeBookingDetails', [App\Http\Controllers\BookingController::class, 'storeBookingDetails']);
+
+Route::middleware(['auth'])->get('/myBooking', [App\Http\Controllers\BookingController::class, 'myBooking'])->name('myBooking');
+
+Route::middleware(['auth'])->get('/cancelBooking/{id}', [App\Http\Controllers\BookingController::class, 'cancelBooking']);

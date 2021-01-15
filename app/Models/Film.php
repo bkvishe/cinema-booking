@@ -15,7 +15,7 @@ class Film extends Model
     {
         return $this->hasMany(Show::class, 'film_id', 'id');
     }
-
+    
     public static function theaters(int $filmId)
     {
         return Theater::select('theater.*')
@@ -23,6 +23,7 @@ class Film extends Model
         ->join('theater_screen', 'theater_screen.theater_id', '=', 'theater.id')
         ->join('show', 'show.theater_screen_id', '=', 'theater_screen.id')
         ->where('show.film_id', $filmId)
+        ->where('show.start_time', '>', now())
         ->get()
         ->toArray();
     }   

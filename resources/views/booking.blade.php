@@ -5,15 +5,33 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('Booking') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
+                    @if (session('success'))
                         <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                            {{ session('success') }}
                         </div>
                     @endif
-                    <form id="booking-from" >
+
+                    @if (session('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form action="{{url('/storeBookingDetails')}}" id="booking-from" method="POST">
+                        @csrf
                         <div class="mb-3">
                             <label class="form-label">Select City</label>
                             <select class="form-control" name="city" id="city">
@@ -33,9 +51,12 @@
                         
                         </div>
 
-                        <div class="mb-3" id="seat-selection">
-                            <label class="form-label">Enter number of seats</label>
-                            <input type="number" class="form-control" />
+                        <div class="mb-3" id="seat-selection" style="display:none;">
+                            
+                        </div>    
+
+                        <div class="mb-3" id="book-button" style="display:none;">
+                            <button class="btn btn-success" type="submit">Book the Show</button>
                         </div>    
                     </form>
                 </div>

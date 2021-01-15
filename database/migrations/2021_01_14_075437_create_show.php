@@ -15,7 +15,7 @@ class CreateShow extends Migration
     {
         Schema::create('show', function (Blueprint $table) {
             $table->id();
-            $table->datetime('date');
+            $table->date('date');
             $table->datetime('start_time');
             $table->datetime('end_time');
             $table->foreignId('theater_screen_id');

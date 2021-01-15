@@ -22,6 +22,7 @@ class CreateBooking extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreignId('show_id');
             $table->foreign('show_id')->references('id')->on('show');
+            $table->timestamps($precision = 0);
         });
     }
 
