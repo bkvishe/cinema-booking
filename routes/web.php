@@ -22,3 +22,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/', [App\Http\Controllers\BookingController::class, 'index']);
+
+Route::get('/getFilmsByCity/{id}', [App\Http\Controllers\BookingController::class, 'getFilmsByCity']);
+
+Route::get('/getTheatersByFilm/{id}', [App\Http\Controllers\BookingController::class, 'getTheatersByFilm']);

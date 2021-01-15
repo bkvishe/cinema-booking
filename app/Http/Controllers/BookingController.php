@@ -36,4 +36,18 @@ class BookingController extends Controller
 
         
     }
+
+    public function getFilmsByCity(Request $request, $cityId)
+    {
+        $films = $this->booking->getFilmsByCity($cityId);
+        
+        return view('filmgrid', ['films' => $films])->render();
+    }
+
+    public function getTheatersByFilm(Request $request, $filmId)
+    {
+        $theaters = $this->booking->getTheatersByFilm($filmId);
+        
+        return view('theatergrid', ['theaters' => $theaters])->render();
+    }
 }

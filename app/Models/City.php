@@ -24,6 +24,7 @@ class City extends Model
         ->join('theater_screen', 'theater_screen.id', '=', 'show.theater_screen_id')
         ->join('theater', 'theater.id', '=', 'theater_screen.theater_id')
         ->where('theater.city_id', $locationId)
+        ->groupBy('film.id')
         ->get()
         ->toArray();
     }

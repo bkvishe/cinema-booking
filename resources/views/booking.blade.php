@@ -13,20 +13,31 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <form id="booking-from" >
+                        <div class="mb-3">
+                            <label class="form-label">Select City</label>
+                            <select class="form-control" name="city" id="city">
+                            <option value="0">Please select</option>
+                                @foreach ($cities as $city)
+                                    <option value="{{ $city['id']}}">{{ $city['name']}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3" id="film-grid" style="display:none;">
+                            <label class="form-label">Select Film</label>
+                            <select class="form-control" name="film" id="film">
+                            </select>
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Select City</label>
-                        <select class="form-control" name="city" id="city">
-                        <option value="0">Please select</option>
-                            @foreach ($cities as $city)
-                                <option value="{{ $city['id']}}">{{ $city['name']}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
+                        <div class="mb-3" id="theater-grid" style="display:none;">
+                        
+                        </div>
+
+                        <div class="mb-3" id="seat-selection">
+                            <label class="form-label">Enter number of seats</label>
+                            <input type="number" class="form-control" />
+                        </div>    
+                    </form>
                 </div>
             </div>
         </div>
