@@ -25,7 +25,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <input type="hidden" id="baseurl" url="{{url('/')}}" />
+                <input type="hidden" id="baseurl" value="{{url('/')}}" />
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>

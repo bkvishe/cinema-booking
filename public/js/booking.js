@@ -1,11 +1,15 @@
 $(function(){
 
+    var baseUrl = $("#baseurl").val();
+
     $("#city").on('change', function(){
+
+        
 
         let cityId = this.value;
 
         $.ajax({
-            url: "http://localhost/getFilmsByCity/" + cityId,
+            url: baseUrl + "/getFilmsByCity/" + cityId,
             type: "GET",
             success: function(response){
                 
@@ -23,7 +27,7 @@ $(function(){
         let filmId = this.value;
 
         $.ajax({
-            url: "http://localhost/getTheatersByFilm/" + filmId,
+            url: baseUrl + "/getTheatersByFilm/" + filmId,
             type: "GET",
             success: function(response){
                 
@@ -39,7 +43,7 @@ $(function(){
         let showId = $("input:radio.show-selection:checked").val();
     
         $.ajax({
-            url: "http://localhost/getAvailableSeats/" + showId,
+            url: baseUrl + "/getAvailableSeats/" + showId,
             type: "GET",
             success: function(response){
                                 
@@ -47,8 +51,7 @@ $(function(){
 
                 $("#seat-selection").show();
 
-                $("#book-button").show();
-                
+                $("#book-button").show();                
             }
         });
     });

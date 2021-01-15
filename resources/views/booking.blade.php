@@ -29,8 +29,9 @@
                             </ul>
                         </div>
                     @endif
-
+                    
                     <form action="{{url('/storeBookingDetails')}}" id="booking-from" method="POST">
+                    
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">Select City</label>

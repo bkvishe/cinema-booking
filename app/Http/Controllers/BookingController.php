@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Contracts\BookingContract;
 use Auth;
+use Log;
 
 class BookingController extends Controller
 {
@@ -22,28 +23,64 @@ class BookingController extends Controller
 
     public function index()
     {
-        $cities = $this->booking->getCities();
+        try{
+            
+            $cities = $this->booking->getCities();
+
+        } catch (\Exception $e) {
+
+            Log::error('BookingController@index - error - ' . $e->getMessage());
+
+            return view('errors.500')->render();
+        }
 
         return view('booking', ['cities' => $cities]);
     }
 
     public function getFilmsByCity(Request $request, $cityId)
     {
-        $films = $this->booking->getFilmsByCity($cityId);
+        try{
+
+            $films = $this->booking->getFilmsByCity($cityId);
+
+        } catch (\Exception $e) {
+
+            Log::error('BookingController@getFilmsByCity - error - ' . $e->getMessage());
+
+            return view('errors.500')->render();
+        }
         
         return view('filmgrid', ['films' => $films])->render();
     }
 
     public function getTheatersByFilm(Request $request, $filmId)
     {
-        $theaters = $this->booking->getTheatersByFilm($filmId);
+        try{
+
+            $theaters = $this->booking->getTheatersByFilm($filmId);
+
+        } catch (\Exception $e) {
+
+            Log::error('BookingController@getTheatersByFilm - error - ' . $e->getMessage());
+
+            return view('errors.500')->render();
+        }
         
         return view('theatergrid', ['theaters' => $theaters])->render();
     }
 
     public function getAvailableSeats(Request $request, $showId)
     {
-        $availableSeats = $this->booking->getAvailableSeats($showId);
+        try{
+
+            $availableSeats = $this->booking->getAvailableSeats($showId);
+
+        } catch (\Exception $e) {
+
+            Log::error('BookingController@getAvailableSeats - error - ' . $e->getMessage());
+
+            return view('errors.500')->render();
+        }
         
         return view('seatselection', ['availableSeats' => $availableSeats])->render();
     }
@@ -60,7 +97,16 @@ class BookingController extends Controller
         $numberOfSeats = $request->total_seats;
         $status = 'confirmed';
 
-        $bookingRefNumber = $this->booking->storeBooking($userId, $showId, $numberOfSeats, $status);
+        try{
+
+            $bookingRefNumber = $this->booking->storeBooking($userId, $showId, $numberOfSeats, $status);
+
+        } catch (\Exception $e) {
+
+            Log::error('BookingController@storeBookingDetails - error - ' . $e->getMessage());
+
+            return view('errors.500')->render();
+        }
 
         if($bookingRefNumber){
 
@@ -75,15 +121,33 @@ class BookingController extends Controller
     public function myBooking()
     {
         $userId = Auth::user()->id;
+
+        try{
         
-        $userBookings = $this->booking->getUserBookings($userId);
+            $userBookings = $this->booking->getUserBookings($userId);
+
+        } catch (\Exception $e) {
+
+            Log::error('BookingController@myBooking - error - ' . $e->getMessage());
+
+            return view('errors.500')->render();
+        }
 
         return view('mybookings', ['userBookings' => $userBookings]);
     }
 
     public function cancelBooking(Request $request, $bookingId)
     {
-        $result = $this->booking->cancelBooking($bookingId);
+        try{
+
+            $result = $this->booking->cancelBooking($bookingId);
+
+        } catch (\Exception $e) {
+
+            Log::error('BookingController@cancelBooking - error - ' . $e->getMessage());
+
+            return view('errors.500')->render();
+        }
 
         if($result){
 
