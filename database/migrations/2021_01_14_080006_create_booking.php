@@ -16,6 +16,8 @@ class CreateBooking extends Migration
         Schema::create('booking', function (Blueprint $table) {
             $table->id();
             $table->integer('number_of_seats');
+            $table->string('booking_number', 64);
+            $table->float('total_amount', 8, 2);
             $table->datetime('timestamp');
             $table->enum('status', ['confirmed', 'pending']);
             $table->foreignId('user_id');

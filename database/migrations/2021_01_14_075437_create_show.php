@@ -18,6 +18,7 @@ class CreateShow extends Migration
             $table->date('date');
             $table->datetime('start_time');
             $table->datetime('end_time');
+            $table->float('price_tag', 8, 2);
             $table->foreignId('theater_screen_id');
             $table->foreign('theater_screen_id')->references('id')->on('theater_screen');
             $table->foreignId('film_id');
