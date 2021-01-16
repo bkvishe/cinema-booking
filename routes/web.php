@@ -19,6 +19,11 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/test', function(){
+
+    echo 11;
+});
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/', [App\Http\Controllers\BookingController::class, 'index']);

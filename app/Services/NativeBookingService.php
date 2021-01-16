@@ -86,7 +86,7 @@ class NativeBookingService implements BookingContract
         return Booking::userBookings($userId);
     }
 
-    public function cancelBooking(int $bookingId)
+    public function cancelBooking(int $bookingId) :bool
     {
 
         if($this->checkCancelEligibility($bookingId)){
