@@ -19,7 +19,10 @@ class Film extends Model
     public static function theaters(int $filmId, int $cityId)
     {
         return Theater::select('theater.*')
-        ->with('shows')
+        ->with(['shows' => function ($query) use($filmId){
+            $query->where('show.film_id', '=', $filmId)
+            ->where('show.start_time', '>', now());
+        }])
         ->join('theater_screen', 'theater_screen.theater_id', '=', 'theater.id')
         ->join('show', 'show.theater_screen_id', '=', 'theater_screen.id')
         ->where('theater.city_id', $cityId)
