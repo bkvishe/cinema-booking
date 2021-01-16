@@ -53,11 +53,11 @@ class BookingController extends Controller
         return view('filmgrid', ['films' => $films])->render();
     }
 
-    public function getTheatersByFilm(Request $request, $filmId)
+    public function getTheatersByFilm(Request $request, $filmId, $cityId)
     {
         try{
 
-            $theaters = $this->booking->getTheatersByFilm($filmId);
+            $theaters = $this->booking->getTheatersByFilm($filmId, $cityId);
 
         } catch (\Exception $e) {
 

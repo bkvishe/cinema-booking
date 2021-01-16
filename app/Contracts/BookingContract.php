@@ -12,7 +12,7 @@ interface BookingContract
 
     public function getFilmsByCity(int $cityId) :array;
 
-    public function getTheatersByFilm(int $filmId) :array;
+    public function getTheatersByFilm(int $filmId, int $cityId) :array;
 
     public function getAvailableSeats(int $showId) :int;
 

@@ -39,9 +39,9 @@ class NativeBookingService implements BookingContract
         return City::films($cityId);
     }
 
-    public function getTheatersByFilm(int $filmId) :array
+    public function getTheatersByFilm(int $filmId, int $cityId) :array
     {
-        return Film::theaters($filmId);
+        return Film::theaters($filmId, $cityId);
     }
 
     public function getAvailableSeats(int $showId) :int

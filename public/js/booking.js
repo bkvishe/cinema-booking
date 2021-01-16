@@ -25,9 +25,10 @@ $(function(){
     $("#film").on('change', function(){
 
         let filmId = this.value;
+        let cityId = $("#city").val();
 
         $.ajax({
-            url: baseUrl + "/getTheatersByFilm/" + filmId,
+            url: baseUrl + "/getTheatersByFilm/" + filmId + '/' + cityId,
             type: "GET",
             success: function(response){
                 

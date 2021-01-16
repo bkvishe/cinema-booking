@@ -28,11 +28,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/', [App\Http\Controllers\BookingController::class, 'index']);
 
-Route::get('/getFilmsByCity/{id}', [App\Http\Controllers\BookingController::class, 'getFilmsByCity']);
+Route::get('/getFilmsByCity/{cityId}', [App\Http\Controllers\BookingController::class, 'getFilmsByCity']);
 
-Route::get('/getTheatersByFilm/{id}', [App\Http\Controllers\BookingController::class, 'getTheatersByFilm']);
+Route::get('/getTheatersByFilm/{filmId}/{cityId}', [App\Http\Controllers\BookingController::class, 'getTheatersByFilm']);
 
-Route::get('/getAvailableSeats/{id}', [App\Http\Controllers\BookingController::class, 'getAvailableSeats']);
+Route::get('/getAvailableSeats/{showId}', [App\Http\Controllers\BookingController::class, 'getAvailableSeats']);
 
 Route::middleware(['auth'])->post('/storeBookingDetails', [App\Http\Controllers\BookingController::class, 'storeBookingDetails']);
 
