@@ -113,7 +113,7 @@ class NativeBookingService implements BookingContract
 
         $diff = round(($startTime - $now) / 60,2); // Divided by 60 to get difference in minutes
 
-        if($diff < env('CANCEL_WINDOW_MIN', 60) || $diff < 0)
+        if($diff < env('CANCEL_WINDOW_MIN', 60) || $diff < 0) // Check for 60 min window and previous show as well
         {
             return false;
         }
